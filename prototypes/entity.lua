@@ -83,61 +83,47 @@ electric_locomotive_3.air_resistance = 0.00300
 electric_locomotive_3.icon_size = 32
 electric_locomotive_3.icon_mipmaps = nil
 
-local electric_locomotive_4 = {
-    type = "locomotive",
-    name = "et-electric-locomotive-4",
-    icon = "__ElectricTrain__/graphics/icons/space-locomotive.png",
-    icon_size = 32,
-    flags = {"placeable-neutral", "player-creation", "placeable-off-grid"},
-    minable = {
-        mining_time = 1,
-        result = "et-electric-locomotive-4"
-    },
-    mined_sound = {
-        filename = "__core__/sound/deconstruct-medium.ogg"
-    },
-    max_health = 1700,
-    corpse = "locomotive-remnants",
-    dying_explosion = "locomotive-explosion",
-    collision_box = {{-0.6, -2.6}, {0.6, 2.6}},
-    selection_box = {{-1, -3}, {1, 3}},
-    drawing_box = {{-1, -4}, {1, 3}},
-    alert_icon_shift = util.by_pixel(0, -24),
-    damaged_trigger_effect = hit_effects.entity(),
-    weight = 2000,
-    max_speed = 3,
-    max_power = "2250kW",
-    reversing_power_modifier = 1.0,
-    braking_force = 25,
-    friction_force = 0.18,
-    vertical_selection_shift = -0.5,
-    air_resistance = 0.0025, -- this is a percentage of current speed that will be subtracted
-    connection_distance = connection_length,
-    joint_distance = 4,
-    energy_per_hit_point = 5,
-    resistances = {{
+
+local electric_locomotive_4 = table.deepcopy(data.raw['locomotive']['locomotive'])
+electric_locomotive_4.name = "et-electric-locomotive-4"
+electric_locomotive_4.icon = "__ElectricTrain__/graphics/icons/space-locomotive.png"
+electric_locomotive_4.icon_size = 32
+electric_locomotive_4.flags = {"placeable-neutral", "player-creation", "placeable-off-grid"}
+electric_locomotive_4.minable.result = "et-electric-locomotive-4"
+electric_locomotive_4.max_health = 2000
+electric_locomotive_4.collision_box = {{-0.6, -2.6}, {0.6, 2.6}}
+electric_locomotive_4.selection_box = {{-1, -3}, {1, 3}}
+electric_locomotive_4.drawing_box = {{-1, -4}, {1, 3}}
+electric_locomotive_4.alert_icon_shift = util.by_pixel(0, -24)
+electric_locomotive_4.damaged_trigger_effect = hit_effects.entity()
+electric_locomotive_4.max_speed = 3
+electric_locomotive_4.max_power = "2250kW"
+electric_locomotive_4.reversing_power_modifier = 1.0
+electric_locomotive_4.braking_force = 25
+electric_locomotive_4.friction_force = 0.18
+electric_locomotive_4.vertical_selection_shift = -0.5
+electric_locomotive_4.air_resistance = 0.0025
+electric_locomotive_4.connection_distance = connection_length
+electric_locomotive_4.joint_distance = 4
+electric_locomotive_4.energy_per_hit_point = 5
+electric_locomotive_4.resistances = {{
         type = "fire",
         decrease = 20,
-        percent = 75
-    }, {
+        percent = 75 }, {
         type = "physical",
         decrease = 15,
-        percent = 30
-    }, {
+        percent = 30 }, {
         type = "impact",
         decrease = 50,
-        percent = 75
-    }, {
+        percent = 75 }, {
         type = "explosion",
         decrease = 15,
-        percent = 30
-    }, {
+        percent = 30 }, {
         type = "acid",
         decrease = 5,
-        percent = 25
-    }},
-    burner = {fuel_inventory_size = 0},
-    front_light = {{
+        percent = 25 }}
+electric_locomotive_4.burner = {fuel_inventory_size = 0}
+electric_locomotive_4.front_light = {{
         type = "oriented",
         minimum_darkness = 0.3,
         picture = {
@@ -151,8 +137,7 @@ local electric_locomotive_4 = {
         shift = {-0.6, -16},
         size = 2,
         intensity = 0.8,
-        color = space_train_light_color
-    }, {
+        color = space_train_light_color }, {
         type = "oriented",
         minimum_darkness = 0.3,
         picture = {
@@ -166,17 +151,15 @@ local electric_locomotive_4 = {
         shift = {0.6, -16},
         size = 2,
         intensity = 0.8,
-        color = space_train_light_color
-    }},
-    back_light = rolling_stock_back_light(),
-    stand_by_light = rolling_stock_stand_by_light(),
-    color = {
+        color = space_train_light_color }}
+electric_locomotive_4.back_light = rolling_stock_back_light()
+electric_locomotive_4.stand_by_light = rolling_stock_stand_by_light()
+electric_locomotive_4.color = {
         r = 0.92,
         g = 0.07,
         b = 0,
-        a = 0.5
-    },
-    pictures = {
+        a = 0.5 }
+electric_locomotive_4.pictures = {
         layers = {{
             dice = 4,
             priority = "very-low",
@@ -301,9 +284,8 @@ local electric_locomotive_4 = {
                 shift = {0, wagon_vertical_shift},
                 scale = train_scale
             }
-        }}
-    },
-    front_light_pictures = {
+        }} }
+electric_locomotive_4.front_light_pictures = {
         layers = {{
             priority = "very-low",
             blend_mode = "additive",
@@ -357,69 +339,51 @@ local electric_locomotive_4 = {
                 shift = {0, wagon_vertical_shift},
                 scale = train_scale
             }
-        }}
-    },
-    minimap_representation = {
-        filename = "__ElectricTrain__/graphics/space-trains/space-locomotive-minimap-representation.png",
-        flags = {"icon"},
-        size = {20, 40},
-        scale = 0.5
-    },
-    selected_minimap_representation = {
+        }} }
+electric_locomotive_4.selected_minimap_representation = {
         filename = "__ElectricTrain__/graphics/space-trains/space-locomotive-selected-minimap-representation.png",
         flags = {"icon"},
         size = {20, 40},
-        scale = 0.5
-    },
-    wheels = space_train_wheels,
-    stop_trigger = { -- left side
-    {
-        type = "create-trivial-smoke",
-        repeat_count = 125,
-        smoke_name = "smoke-train-stop",
-        initial_height = 0,
-        -- smoke goes to the left
-        speed = {-0.03, 0},
-        speed_multiplier = 0.75,
-        speed_multiplier_deviation = 1.1,
-        offset_deviation = {{-0.75, -2.7}, {-0.3, 2.7}}
-    }, -- right side
-    {
-        type = "create-trivial-smoke",
-        repeat_count = 125,
-        smoke_name = "smoke-train-stop",
-        initial_height = 0,
-        -- smoke goes to the right
-        speed = {0.03, 0},
-        speed_multiplier = 0.75,
-        speed_multiplier_deviation = 1.1,
-        offset_deviation = {{0.3, -2.7}, {0.75, 2.7}}
-    }, {
-        type = "play-sound",
-        sound = sounds.train_brakes
-    }},
-    --drive_over_tie_trigger = drive_over_tie(),
-    --tie_distance = 50,
-    vehicle_impact_sound = sounds.generic_impact,
-    working_sound = {
+        scale = 0.5 }
+electric_locomotive_4.wheels = space_train_wheels
+electric_locomotive_4.stop_trigger = {
+        {
+            type = "create-trivial-smoke",
+            repeat_count = 125,
+            smoke_name = "smoke-train-stop",
+            initial_height = 0,
+            -- smoke goes to the left
+            speed = {-0.03, 0},
+            speed_multiplier = 0.75,
+            speed_multiplier_deviation = 1.1,
+            offset_deviation = {{-0.75, -2.7}, {-0.3, 2.7}} }, 
+        {
+            type = "create-trivial-smoke",
+            repeat_count = 125,
+            smoke_name = "smoke-train-stop",
+            initial_height = 0,
+            -- smoke goes to the right
+            speed = {0.03, 0},
+            speed_multiplier = 0.75,
+            speed_multiplier_deviation = 1.1,
+            offset_deviation = {{0.3, -2.7}, {0.75, 2.7}} }, {
+            type = "play-sound",
+            sound = sounds.train_brakes } }
+electric_locomotive_4.working_sound = {
         sound = {
             filename = "__ElectricTrain__/sound/space-train-engine.ogg",
             volume = 0.4
         },
         match_speed_to_activity = true,
-        max_sounds_per_type = 2
-    },
-    open_sound = {
-        filename = "__base__/sound/train-door-open.ogg",
-        volume = 0.5
-    },
-    close_sound = {
+        max_sounds_per_type = 2 }
+electric_locomotive_4.water_reflection = locomotive_reflection()
+electric_locomotive_4.sound_minimum_speed = 0.5
+electric_locomotive_4.close_sound = {
         filename = "__base__/sound/train-door-close.ogg",
-        volume = 0.4
-    },
-    sound_minimum_speed = 0.5,
-    water_reflection = locomotive_reflection()
-}
+        volume = 0.4 }
+electric_locomotive_4.open_sound = {
+        filename = "__base__/sound/train-door-open.ogg",
+        volume = 0.5 }
 
 data:extend({electric_locomotive_1,electric_locomotive_2,electric_locomotive_3,electric_locomotive_4})
 
@@ -487,67 +451,55 @@ cargo_wagon_3.air_resistance = 0.002
 cargo_wagon_3.icon_size = 32
 cargo_wagon_3.icon_mipmaps = nil
 
-local cargo_wagon_4 = {
-    type = "cargo-wagon",
-    name = "et-cargo-wagon-4",
-    icon = "__ElectricTrain__/graphics/icons/space-cargo-wagon.png",
-    icon_size = 64,
-    icon_mipmaps = 4,
-    flags = {"placeable-neutral", "player-creation", "placeable-off-grid"},
-    inventory_size = 80,
-    minable = {
-        mining_time = 0.5,
-        result = "et-cargo-wagon-4"
-    },
-    mined_sound = {
+
+local cargo_wagon_4 = table.deepcopy(data.raw['cargo-wagon']['cargo-wagon'])
+cargo_wagon_4.name = "et-cargo-wagon-4"
+cargo_wagon_4.icon = "__ElectricTrain__/graphics/icons/space-cargo-wagon.png"
+cargo_wagon_4.icon_size = 64
+cargo_wagon_4.icon_mipmaps = 4
+cargo_wagon_4.flags = {"placeable-neutral", "player-creation", "placeable-off-grid"}
+cargo_wagon_4.inventory_size = 80
+cargo_wagon_4.minable.result = "et-cargo-wagon-4"
+cargo_wagon_4.mined_sound = {
         filename = "__core__/sound/deconstruct-large.ogg",
-        volume = 0.8
-    },
-    max_health = 600,
-    corpse = "cargo-wagon-remnants",
-    dying_explosion = "cargo-wagon-explosion",
-    collision_box = {{-0.6, -2.4}, {0.6, 2.4}},
-    selection_box = {{-1, -2.703125}, {1, 3.296875}},
-    damaged_trigger_effect = hit_effects.entity(),
-    vertical_selection_shift = -0.796875,
-    weight = 1500,
-    max_speed = 2.8,
-    braking_force = 10,
-    friction_force = 0.20,
-    air_resistance = 0.0150,
-    connection_distance = connection_length,
-    joint_distance = 4,
-    energy_per_hit_point = 5,
-    resistances = {{
+        volume = 0.8 }
+cargo_wagon_4.max_health = 600
+cargo_wagon_4.collision_box = {{-0.6, -2.4}, {0.6, 2.4}}
+cargo_wagon_4.selection_box = {{-1, -2.703125}, {1, 3.296875}}
+cargo_wagon_4.damaged_trigger_effect = hit_effects.entity()
+cargo_wagon_4.vertical_selection_shift = -0.796875
+cargo_wagon_4.weight = 1500
+cargo_wagon_4.max_speed = 3
+cargo_wagon_4.braking_force = 10
+cargo_wagon_4.friction_force = 0.20
+cargo_wagon_4.air_resistance = 0.0150
+cargo_wagon_4.connection_distance = connection_length
+cargo_wagon_4.joint_distance = 4
+cargo_wagon_4.energy_per_hit_point = 5
+cargo_wagon_4.resistances = {{
         type = "fire",
         decrease = 15,
-        percent = 50
-    }, {
+        percent = 50 }, {
         type = "physical",
         decrease = 15,
-        percent = 30
-    }, {
+        percent = 30 }, {
         type = "impact",
         decrease = 50,
-        percent = 60
-    }, {
+        percent = 60 }, {
         type = "explosion",
         decrease = 15,
-        percent = 30
-    }, {
+        percent = 30 }, {
         type = "acid",
         decrease = 3,
-        percent = 20
-    }},
-    back_light = rolling_stock_back_light(),
-    stand_by_light = rolling_stock_stand_by_light(),
-    color = {
+        percent = 20 }}
+cargo_wagon_4.back_light = rolling_stock_back_light()
+cargo_wagon_4.stand_by_light = rolling_stock_stand_by_light()
+cargo_wagon_4.color = {
         r = 0.43,
         g = 0.23,
         b = 0,
-        a = 0.5
-    },
-    pictures = {
+        a = 0.5 }
+cargo_wagon_4.pictures = {
         layers = {{
             priority = "very-low",
             dice = 4,
@@ -655,35 +607,10 @@ local cargo_wagon_4 = {
                 shift = {0.8, wagon_vertical_shift},
                 scale = cargo_wagon_scale
             }
-        }}
-    },
-    minimap_representation = {
-        filename = "__base__/graphics/entity/cargo-wagon/cargo-wagon-minimap-representation.png",
-        flags = {"icon"},
-        size = {20, 40},
-        scale = 0.5
-    },
-    selected_minimap_representation = {
-        filename = "__base__/graphics/entity/cargo-wagon/cargo-wagon-selected-minimap-representation.png",
-        flags = {"icon"},
-        size = {20, 40},
-        scale = 0.5
-    },
-    wheels = space_train_wheels,
-    working_sound = {
-        sound = {
-            filename = "__base__/sound/train-wheels.ogg",
-            volume = 0.3
-        },
-        match_volume_to_activity = true
-    },
-    crash_trigger = crash_trigger(),
-    open_sound = sounds.cargo_wagon_open,
-    close_sound = sounds.cargo_wagon_close,
-    sound_minimum_speed = 1,
-    vehicle_impact_sound = sounds.generic_impact,
-    water_reflection = locomotive_reflection()
-}
+        }} },
+cargo_wagon_4.wheels = space_train_wheels
+cargo_wagon_4.crash_trigger = crash_trigger()
+cargo_wagon_4.water_reflection = locomotive_reflection()
 
 data:extend({cargo_wagon_2,cargo_wagon_3,cargo_wagon_4})
 
@@ -716,67 +643,54 @@ fluid_wagon_3.air_resistance = 0.002
 fluid_wagon_3.icon_size = 32
 fluid_wagon_3.icon_mipmaps = nil
 
-local fluid_wagon_4 = {
-    type = "fluid-wagon",
-    name = "et-fluid-wagon-4",
-    icon = "__ElectricTrain__/graphics/icons/space-fluid-wagon.png",
-    icon_size = 64,
-    icon_mipmaps = 4,
-    flags = {"placeable-neutral", "player-creation", "placeable-off-grid"},
-    minable = {
+local fluid_wagon_4 = table.deepcopy(data.raw['fluid-wagon']['fluid-wagon'])
+fluid_wagon_4.name = "et-fluid-wagon-4"
+fluid_wagon_4.icon = "__ElectricTrain__/graphics/icons/space-fluid-wagon.png"
+fluid_wagon_4.icon_size = 64
+fluid_wagon_4.icon_mipmaps = 4
+fluid_wagon_4.flags = {"placeable-neutral", "player-creation", "placeable-off-grid"}
+fluid_wagon_4.minable = {
         mining_time = 0.5,
-        result = "et-fluid-wagon-4"
-    },
-    mined_sound = {
-        filename = "__core__/sound/deconstruct-large.ogg",
-        volume = 0.8
-    },
-    max_health = 1200,
-    capacity = 50000,
-    corpse = "fluid-wagon-remnants",
-    dying_explosion = "fluid-wagon-explosion",
-    collision_box = {{-0.6, -2.4}, {0.6, 2.4}},
-    selection_box = {{-1, -2.703125}, {1, 3.296875}},
-    damaged_trigger_effect = hit_effects.entity(),
-    vertical_selection_shift = -0.796875,
-    weight = 1500,
-    max_speed = 2.8,
-    braking_force = 10,
-    friction_force = 0.20,
-    air_resistance = 0.0150,
-    connection_distance = connection_length,
-    joint_distance = 4,
-    energy_per_hit_point = 6,
-    resistances = {{
+        result = "et-fluid-wagon-4" }
+fluid_wagon_4.max_health = 1200
+fluid_wagon_4.capacity = 50000
+fluid_wagon_4.corpse = "fluid-wagon-remnants"
+fluid_wagon_4.dying_explosion = "fluid-wagon-explosion"
+fluid_wagon_4.collision_box = {{-0.6, -2.4}, {0.6, 2.4}}
+fluid_wagon_4.selection_box = {{-1, -2.703125}, {1, 3.296875}}
+fluid_wagon_4.damaged_trigger_effect = hit_effects.entity()
+fluid_wagon_4.vertical_selection_shift = -0.796875
+fluid_wagon_4.weight = 1500
+fluid_wagon_4.max_speed = 3
+fluid_wagon_4.braking_force = 10
+fluid_wagon_4.friction_force = 0.20
+fluid_wagon_4.connection_distance = connection_length
+fluid_wagon_4.joint_distance = 4
+fluid_wagon_4.energy_per_hit_point = 6
+fluid_wagon_4.resistances = {{
         type = "fire",
         decrease = 15,
-        percent = 50
-    }, {
+        percent = 50 }, {
         type = "physical",
         decrease = 15,
-        percent = 30
-    }, {
+        percent = 30 }, {
         type = "impact",
         decrease = 50,
-        percent = 60
-    }, {
+        percent = 60 }, {
         type = "explosion",
         decrease = 15,
-        percent = 30
-    }, {
+        percent = 30 }, {
         type = "acid",
         decrease = 3,
-        percent = 20
-    }},
-    back_light = rolling_stock_back_light(),
-    stand_by_light = rolling_stock_stand_by_light(),
-    color = {
+        percent = 20 }},
+fluid_wagon_4.back_light = rolling_stock_back_light()
+fluid_wagon_4.stand_by_light = rolling_stock_stand_by_light()
+fluid_wagon_4.color = {
         r = 0.43,
         g = 0.23,
         b = 0,
-        a = 0.5
-    },
-    pictures = {
+        a = 0.5 },
+fluid_wagon_4.pictures = {
         layers = {{
             priority = "very-low",
             dice = 4,
@@ -847,37 +761,22 @@ local fluid_wagon_4 = {
                 shift = {0, -0.7},
                 scale = fluid_wagon_scale
             }
-        }}
-    },
-    minimap_representation = {
+        }} }
+fluid_wagon_4.minimap_representation = {
         filename = "__base__/graphics/entity/fluid-wagon/fluid-wagon-minimap-representation.png",
         flags = {"icon"},
         size = {20, 40},
-        scale = 0.5
-    },
-    selected_minimap_representation = {
+        scale = 0.5 }
+fluid_wagon_4.selected_minimap_representation = {
         filename = "__base__/graphics/entity/fluid-wagon/fluid-wagon-selected-minimap-representation.png",
         flags = {"icon"},
         size = {20, 40},
-        scale = 0.5
-    },
-    wheels = space_train_wheels,
-    --drive_over_tie_trigger = drive_over_tie(),
-    --tie_distance = 50,
-    working_sound = {
-        sound = {
-            filename = "__base__/sound/train-wheels.ogg",
-            volume = 0.3
-        },
-        match_volume_to_activity = true
-    },
-    crash_trigger = crash_trigger(),
-    sound_minimum_speed = 0.1,
-    vehicle_impact_sound = sounds.generic_impact,
-    water_reflection = locomotive_reflection()
-}
-fluid_wagon_4.icon_size = 32
-fluid_wagon_4.icon_mipmaps = nil
+        scale = 0.5 }
+fluid_wagon_4.wheels = space_train_wheels
+fluid_wagon_4.crash_trigger = crash_trigger()
+fluid_wagon_4.sound_minimum_speed = 0.1
+fluid_wagon_4.vehicle_impact_sound = sounds.generic_impact
+fluid_wagon_4.water_reflection = locomotive_reflection()
 
 data:extend({fluid_wagon_2,fluid_wagon_3,fluid_wagon_4})
 
