@@ -1,0 +1,9 @@
+{
+	"name":"SeElectricTrain",
+	"author":"Microhawky",
+	"version":"1.0.0",
+	"title":"Electric Train (Microhawk Edit)",
+	"description":"Adds electric locomotives to the game. (Edited Version by Microhawk. Orjinal is from magu5026)",
+	"factorio_version":"1.1",
+	"dependencies": [ "base >= 1.1.1", "space-exploration", "?FactorioExtended-Trains", "?boblogistics", "?Vehicle Wagon", "?EvenMoreLight", "?MultipleUnitTrainControl","!ElectricTrain" ]
+}
