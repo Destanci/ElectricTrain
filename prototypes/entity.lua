@@ -44,7 +44,7 @@ electric_locomotive_1.icon = "__SeElectricTrain__/graphics/loc1.png"
 electric_locomotive_1.minable.result = "et-electric-locomotive-1"
 electric_locomotive_1.burner = {fuel_inventory_size = 0}
 electric_locomotive_1.max_health = 1350
-electric_locomotive_1.max_speed = 1.8		--216*1.8 = 388.8
+electric_locomotive_1.max_speed = 1
 electric_locomotive_1.max_power = "900kW"
 electric_locomotive_1.reversing_power_modifier = 0.8
 electric_locomotive_1.braking_force = 15
@@ -59,7 +59,7 @@ electric_locomotive_2.icon = "__SeElectricTrain__/graphics/loc2.png"
 electric_locomotive_2.minable.result = "et-electric-locomotive-2"
 electric_locomotive_2.burner = {fuel_inventory_size = 0}
 electric_locomotive_2.max_health = 1500
-electric_locomotive_2.max_speed = 2
+electric_locomotive_2.max_speed = 1.2
 electric_locomotive_2.max_power = "1200kW"
 electric_locomotive_2.reversing_power_modifier = 0.9
 electric_locomotive_2.braking_force = 20
@@ -74,7 +74,7 @@ electric_locomotive_3.icon = "__SeElectricTrain__/graphics/loc3.png"
 electric_locomotive_3.minable.result = "et-electric-locomotive-3"
 electric_locomotive_3.burner = {fuel_inventory_size = 0}
 electric_locomotive_3.max_health = 1700
-electric_locomotive_3.max_speed = 2.4		--216*2.4 = 518.4
+electric_locomotive_3.max_speed = 1.4
 electric_locomotive_3.max_power = "1500kW"
 electric_locomotive_3.reversing_power_modifier = 1
 electric_locomotive_3.braking_force = 23
@@ -96,8 +96,8 @@ electric_locomotive_4.selection_box = {{-1, -3}, {1, 3}}
 electric_locomotive_4.drawing_box = {{-1, -4}, {1, 3}}
 electric_locomotive_4.alert_icon_shift = util.by_pixel(0, -24)
 electric_locomotive_4.damaged_trigger_effect = hit_effects.entity()
-electric_locomotive_4.max_speed = 3
-electric_locomotive_4.max_power = "2250kW"
+electric_locomotive_4.max_speed = 1.6
+electric_locomotive_4.max_power = "2000kW"
 electric_locomotive_4.reversing_power_modifier = 1.0
 electric_locomotive_4.braking_force = 25
 electric_locomotive_4.friction_force = 0.18
